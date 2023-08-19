@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
-import logo from '../assets/react.svg';
+import logo from '../react.svg';
 
 export const Navigation = () => {
   return (
@@ -12,7 +12,7 @@ export const Navigation = () => {
             </NavLink>
             <ul>
                 <li>
-                    <NavLink to="/home" className={ ({ isActive }) => isActive ? 'nav-active' : ''}>Home</NavLink>
+                    <NavLink to="/home" className={ ({ isActive }) => isActive ? 'nav-active' : ''}>Shopping</NavLink>
                 </li>
                 <li>
                     <NavLink to="/about" className={ ({ isActive }) => isActive ? 'nav-active' : ''}>About</NavLink>
@@ -26,5 +26,6 @@ export const Navigation = () => {
     </div>
   )
 }
+
 //* isActive es un valor booleano que viene en el navLink y se puede usar con un ternario
 
