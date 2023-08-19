@@ -5,12 +5,11 @@ import { routes } from "./routes";
 import { Suspense } from "react";
 
 
-
 export const Navigation = () => {
   return (
     <Suspense fallback={<span>Cargando...</span>}>
         <div className="main-layout">
-                <nav>
+            <nav>
                 <NavLink to="/home">
                     <img src={ logo } alt="React Logo" />
                 </NavLink>
