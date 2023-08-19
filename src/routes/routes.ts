@@ -35,3 +35,12 @@ export const routes: Route[] = [
     //     name: 'Lazy-3'
     // }
 ]
+
+//* con el lazy mandamos ese path para que se carge de manera perezosa
+
+//* El componente suspense de ract sirve para decirle a React que cuando se esta cargando algun modulo
+//* o componente que se espere pero mientras se esta cargando has lo siguiente.
+//? Osea que muestra un mensaje de cargando u otro cuando se navega a otro componente o modulo, asi 
+//? solo cargamos lo inciial en el bundle y no todo y solcitaos los chunks a medida que vamos navegando.
+
+//* se puede colocar un cargando..  de pantalla cimpleta u otra coas.
