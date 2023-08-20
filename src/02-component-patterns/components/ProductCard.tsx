@@ -1,17 +1,27 @@
-import { createContext} from "react";
+import { ReactElement, createContext} from "react";
 import { useProducts } from '../hooks/useProducts';
 import styles from '../styles/styles.module.css';
 
-import { ProductCardProps, ProductContextProps } from "../interfaces/interfaces";
+import { Product, ProductContextProps } from "../interfaces/interfaces";
+// import { ProductTitle } from "./ProductTitle";
+// import { ProductImage } from "./PorductImage";
+// import { ProductButtons } from "./ProductButtons";
 
 
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
+export interface Props{
+  product  : Product;
+  children?: ReactElement | ReactElement[];
+  className?: string;
+  style: React.CSSProperties
+}
 
-export const ProductCard = ({ children, product }:ProductCardProps) => {
 
-  const{ counter,increseBy} = useProducts();
+export const ProductCard = ({ children, product, className,style }:Props) => {
+
+  const{ counter, increseBy} = useProducts();
 
   return (
     <Provider value={{
@@ -21,10 +31,19 @@ export const ProductCard = ({ children, product }:ProductCardProps) => {
 
     }}>
 
-      <div className={ styles.productCard }>
+      <div 
+        className={ `${ styles.productCard } ${ className }` }
+        style={ style }
+      >
         {children}
       </div>
     </Provider>
 
   )
 }
+
+//? Copiar o crear propiedades sin Object Assign
+
+// ProductCard.Title = ProductTitle;
+// ProductCard.Image = ProductImage;
+// ProductCard.Buttons = ProductButtons;
