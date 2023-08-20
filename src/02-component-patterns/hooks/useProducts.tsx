@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product, onChangeArgs } from "../interfaces/interfaces";
 
 interface useProductArgs{
@@ -11,15 +11,7 @@ export const useProducts = ({ onChange, product, value = 0 }: useProductArgs) =>
 
   const [counter, setCounter] = useState(value);
 
-  const isControlled = useRef( !!onChange ); // trasnformaos a booolean con ! decimos que existo o no existe, no se quiere pasar el onChange como referencia si no un boolena
-
   const increseBy = ( value: number ) =>{
-
-    // console.log('isControlled', isControlled.current );
-
-    if ( isControlled.current ) {
-      return onChange!({ count: value, product })
-    }
 
     const newValue = Math.max( counter + value, 0 )
     setCounter( newValue )

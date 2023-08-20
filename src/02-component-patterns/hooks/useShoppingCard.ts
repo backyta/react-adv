@@ -8,39 +8,22 @@ export const useShoppingCart = () => {
     const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({});
 
     const onProductCountChange = ({ count, product }: { count:number, product: Product } ) => {
-
+        console.log({count});
+        
     setShoppingCart( oldShoppingCart => {
 
-     const productInCart: ProductInCart = oldShoppingCart[product.id] || { ...product, count: 0 }
+    if ( count === 0) {
+    const {[ product.id ]: toDelete , ...rest } = oldShoppingCart;
+    console.log({toDelete});
+    return { ...rest }
+    }
 
-     if ( Math.max( productInCart.count + count, 0 ) > 0) {
-        productInCart.count += count;
-        return { 
-            ...oldShoppingCart,
-            [product.id]: productInCart //setea el productInCart actualizado con el count nuevo y actualiza el estado ese, pasa al padre para renderizar el cunt
-         }
-     }
-
-     // Borrar el producto
-
-     const {[ product.id ]: toDelete , ...rest } = oldShoppingCart;
-     console.log({toDelete});
-     return { ...rest }
-    
-    // if ( count === 0) {
-    // const {[ product.id ]: toDelete , ...rest } = oldShoppingCart;
-    // console.log({toDelete});
-    // return { ...rest }
-    // }
-
-    // return{
-    //     ...oldShoppingCart,
-    //     [ product.id ]:{ ...product, count }
-    //     }
-    // })
-
+    return{
+        ...oldShoppingCart,
+        [ product.id ]:{ ...product, count }
+        }
     })
-  
+
 }
     return{
         shoppingCart,
