@@ -25,3 +25,15 @@ export interface ProductCardHOCProps{
 
 //? Haciendo este cambio aplicamos a las 2 interface el cambios de us props. tanto para el
 //? .Componente en Shoppping como para el llamado del componente normal.
+
+export interface onChangeArgs{
+    product: Product, 
+    count: number
+}
+
+
+
+export interface ProductInCart extends Product{ // tiene todas las propiedades del product normal
+    count: number
+  }
+  
