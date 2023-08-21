@@ -3,6 +3,7 @@ import { Props as ProductTitleProps } from "../components/ProductTitle";
 import { Props as ProductImageProps } from "../components/PorductImage";
 import { Props as ProductButtonsProps } from "../components/ProductButtons";
 
+
 export interface Product{
 id:string;
 title: string;
@@ -11,9 +12,10 @@ img?: string;
 
   
 export interface ProductContextProps{
-counter:number;
-increseBy: (value: number) => void,
-product: Product
+    counter:number;
+    increseBy: (value: number) => void,
+    maxCount?: number,
+    product: Product
 }
 
 export interface ProductCardHOCProps{
@@ -32,8 +34,22 @@ export interface onChangeArgs{
 }
 
 
-
 export interface ProductInCart extends Product{ // tiene todas las propiedades del product normal
     count: number
-  }
+}
   
+export interface InitialValues{
+    count?: number;
+    maxCount?: number;
+}
+
+export interface ProductCardHandlers{
+    count: number;
+    isMaxCountReached: boolean;
+    maxCount?: number;
+    product:Product;
+
+    increseBy:( value: number) => void;
+    reset: () => void;
+
+}// aqui colocamos todo lo que mi componente va exponer al m undo exterior en sus childrens

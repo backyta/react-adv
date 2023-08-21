@@ -1,51 +1,56 @@
-import { ReactElement, createContext} from "react";
+import { createContext} from "react";
 import { useProducts } from '../hooks/useProducts';
 import styles from '../styles/styles.module.css';
 
-import { Product, ProductContextProps, onChangeArgs } from '../interfaces/interfaces';
-// import { ProductTitle } from "./ProductTitle";
-// import { ProductImage } from "./PorductImage";
-// import { ProductButtons } from "./ProductButtons";
+import { InitialValues, Product, ProductCardHandlers, ProductContextProps, onChangeArgs } from '../interfaces/interfaces';
 
 
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
 export interface Props{
+  children:(args: ProductCardHandlers) => JSX.Element;
   product  : Product;
-  children?: ReactElement | ReactElement[];
+  // children?: ReactElement | ReactElement[];
   className?: string;
   style?: React.CSSProperties;
   onChange?: (args: onChangeArgs) => void;
-  value?: number
+  value?: number;
+  initialValues?: InitialValues,
 }
 
 
-export const ProductCard = ({ children, product, className,style, onChange, value }:Props) => {
+export const ProductCard = ({ children, product, className,style, onChange, value, initialValues }:Props) => {
 
-  const{ counter, increseBy} = useProducts({ onChange, product, value });
-  // console.log(counter)
+  const{ counter, increseBy, maxCount, isMaxCountReached, reset} = useProducts({ onChange, product, value, initialValues});
+
   return (
     <Provider value={{
       counter,
       increseBy,
-      product
-
+      product,
+      maxCount
     }}>
 
       <div 
         className={ `${ styles.productCard } ${ className }` }
         style={ style }
       >
-        {children}
+        { 
+          children({
+            count: counter,
+            isMaxCountReached,
+            maxCount:initialValues?.maxCount,
+            product,
+
+            increseBy,
+            reset
+          })  
+        }
       </div>
     </Provider>
 
   )
 }
 
-//? Copiar o crear propiedades sin Object Assign
-
-// ProductCard.Title = ProductTitle;
-// ProductCard.Image = ProductImage;
-// ProductCard.Buttons = ProductButtons;
+//* En el productCard colocamos todo lo que se va exponer como argumentos en el children
