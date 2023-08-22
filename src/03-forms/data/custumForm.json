@@ -1,0 +1,60 @@
+[
+    {
+        "type": "text",
+        "name": "firsName",
+        "placeholder": "Tu nombre...",
+        "label": "First Name",
+        "value": "",
+        "validations":[
+            {
+                "type": "required"
+            },
+            {
+                "type": "minLength",
+                "value": 5            
+            }
+        ]
+    },
+    {
+        "type": "text",
+        "name": "lastName",
+        "placeholder": "Tu apellido...",
+        "label": "Last Name",
+        "value": ""
+    },
+    {
+        "type": "email",
+        "name": "email",
+        "placeholder": "Tu correo...",
+        "label": "Your Email",
+        "value": "",
+        "validations":[
+            {
+                "type": "required"
+            },
+            {
+                "type": "email"          
+            }
+        ]
+    },
+    {
+        "type": "select",
+        "name": "favoriteGame",
+        "label": "Favorite Game",
+        "value": "",
+        "options":[
+            {
+                "id": 1,
+                "label":"Dota 2"
+            },
+            {
+                "id": 2,
+                "label":"Left 4 Dead"
+            },
+            {
+                "id": 3,
+                "label":"Fifa 2022"
+            }
+        ]
+    }
+]
